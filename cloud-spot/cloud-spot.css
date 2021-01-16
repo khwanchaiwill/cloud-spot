@@ -2349,7 +2349,7 @@ p {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   min-height: 119px;
   padding-right: 30px;
   padding-bottom: 12px;

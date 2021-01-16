@@ -69,6 +69,9 @@
         height: 7px;
 
       }
+      .tab-link{
+        flex-wrap: wrap;
+      }
     </style>
   </head>
   <body>
@@ -200,6 +203,7 @@
               
               <a
                 onclick="move()"
+                onblur="stopInterval()"
                 data-w-tab="Tab 1"
                 class="tab-link w-inline-block w-tab-link w--current"
               >
@@ -223,7 +227,7 @@
                 </div> 
               </a> 
               
-              <a onclick="move1()" data-w-tab="Tab 2" class="tab-link w-inline-block w-tab-link">
+              <a onclick="move1()" onblur="clearInterval(frame())" data-w-tab="Tab 2" class="tab-link w-inline-block w-tab-link">
                 <img
                   src="https://uploads-ssl.webflow.com/5fce7eb0b07fa002733b5f69/5fcea91e7935688c37b68676_beautiful-gallery.svg"
                   loading="lazy"
@@ -1071,10 +1075,12 @@
      
     </script>
     <script>
+      var id;
       var elem = document.getElementById("myBar");
       function move() {   
+        stopInterval()
           var width = 1;
-          var id = setInterval(frame, 38);
+          id = setInterval(frame, 38);
           function frame() {
             if (width >= 100) {
               clearInterval(id);
@@ -1085,26 +1091,28 @@
             }
           }
         }
-
+      var elem1 = document.getElementById("myBar1");
       function move1() {
-          var elem = document.getElementById("myBar1");
+        stopInterval()
+          
           var width = 1;
-          var id = setInterval(frame, 38);
+           id = setInterval(frame, 38);
           function frame() {
             if (width >= 100) {
               clearInterval(id);
-              elem.style.width = 0
+              elem1.style.width = 0
             } else {
               width++;
-              elem.style.width = width + "%";
+              elem1.style.width = width + "%";
             }
           }
         }
-   
+      var elem2 = document.getElementById("myBar2");
       function move2() {
-         var elem2 = document.getElementById("myBar2");
+        stopInterval()
+         
           var width = 1;
-         var id = setInterval(frame2, 38);
+          id = setInterval(frame2, 38);
           function frame2() {
             if (width >= 100) {
               clearInterval(id);
@@ -1114,6 +1122,13 @@
               elem2.style.width = width + "%";
             }
           }
+        }
+        function stopInterval(){
+          clearInterval(id)
+          id = ''
+          elem.style.width = 0
+          elem1.style.width = 0
+          elem2.style.width = 0
         }
       
       </script>
